@@ -13,7 +13,7 @@ var express     =      require("express"),
     cloudinary  =      require("cloudinary"),       // package of image upload 
     app         =      express();
     
-mongoose.connect("mongodb://localhost/Yelp_5");
+mongoose.connect("mongodb://prabhat.ku:Prabhat@5789@ds115543.mlab.com:15543/yelpcamps");
 
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));

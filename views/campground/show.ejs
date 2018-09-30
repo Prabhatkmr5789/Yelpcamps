@@ -1,0 +1,68 @@
+<% include ../partial/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Yelpcamps</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 2</li>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="thumbnail">
+                <img src="<%= camp.image %>" height="400" width="500">
+                 <div class="caption-full">
+                <h4><%= camp.name %></h4>
+                <p><%= camp.descript %></p>
+            </div>
+            </div>
+           
+           <div class="well">
+               <a href="/campgrounds/<%= camp._id %>/edit" class="btn btn-default">Update</a>
+               
+<form action="/campgrounds/<%= camp._id %>?_method=DELETE" method="POST">
+    <button class="btn btn-danger">DELETE</button>
+</form>
+
+               <div class="text-right">
+                   <a href="/campgrounds/<%= camp._id %>/comment/new" class="btn btn-default">Add Comments</a>
+               </div>
+               <% camp.comments.forEach(function(comment){%>
+    <strong><%= comment.author.username %></strong>  <p><%= comment.text %> </p>
+    <% if(current_user && comment.author.id.equals(current_user._id)){%>
+    <a href="/campgrounds/<%= camp._id %>/comments/<%= comment._id %>/edit" class="btn btn-primary btn-xsm">edit</a>
+    <form action="/campgrounds/<%= camp.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger btn-xsm">Rem</button>
+    </form>
+    <%}%>
+<%})%>
+
+           </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% include ../partial/footer %>
